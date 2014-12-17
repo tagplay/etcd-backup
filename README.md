@@ -1,4 +1,4 @@
-# etcd-backup
+# etcd-backup [![Docker Repository on Quay.io](https://quay.io/repository/tagplay/etcd-backup/status "Docker Repository on Quay.io")](https://quay.io/repository/tagplay/etcd-backup)
 
 etcd-backup is a simple, efficient and lightweight command line utility to backup and restore [etcd](https://github.com/coreos/etcd) keys.
 
@@ -26,6 +26,14 @@ in the directory where you executed the command.
 
 The default Backup strategy for dumping is to dump all keys and preserve the order : `keys:["/"], recursive:true, sorted:true`
 The backup strategy can be overwritten in the etcd-backup configuration file. See _fixtures/backup-configuration.json_
+
+### Docker Usage
+
+For a single run backup create the directory `/var/backups/etcd` and then run this command
+
+    $ docker run -rm -e "ETCD=http://<ETCD_IP>:4001" -v /var/backups/etcd:/data quay.io/tagplay/etcdbackup
+
+Then you should consider running this daily with cron.
 
 ### Command line options and default values
 
@@ -100,4 +108,3 @@ Will only restore the keys under `/myKey`.
   `-file` Location of the dump file data will be loaded from, default value: "_etcd-dump.json_".<br/>
 
     $ etcd-dump -config=myBackupConfig.json -retries=2 -etcd-config=myClusterConfig.json -file=dataset.json -concurrent-requests=100 restore
-
