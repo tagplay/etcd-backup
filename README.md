@@ -31,7 +31,7 @@ The backup strategy can be overwritten in the etcd-backup configuration file. Se
 
 For a single run backup create the directory `/var/backups/etcd` and then run this command
 
-    $ docker run -rm -e "ETCD=http://<ETCD_IP>:4001" -v /var/backups/etcd:/data quay.io/tagplay/etcdbackup
+    $ docker run -rm -e "ETCD=http://<ETCD_IP>:4001" -v /var/backups/etcd:/data quay.io/tagplay/etcd-backup
 
 Then you should consider running this daily with cron.
 
